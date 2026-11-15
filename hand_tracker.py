@@ -32,6 +32,7 @@ WINDOW = "Vector Hand Tracker"
 
 def ensure_model(model_path: str) -> str:
     if not os.path.exists(model_path):
+        os.makedirs(os.path.dirname(os.path.abspath(model_path)), exist_ok=True)
         print(f"Downloading {model_path} from the MediaPipe model repository...")
         tmp_path = model_path + ".part"  # so an interrupted download never looks like a valid model
         urllib.request.urlretrieve(MODEL_URL, tmp_path)
